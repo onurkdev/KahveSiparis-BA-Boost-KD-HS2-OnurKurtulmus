@@ -69,6 +69,8 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.siparislerListBox = new System.Windows.Forms.ListBox();
             this.siparisVerBtn = new System.Windows.Forms.Button();
             this.totalSipLabel = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.musteriBilgileriGroup.SuspendLayout();
@@ -81,6 +83,8 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.urunoptionsGroup.SuspendLayout();
             this.siparislerGroup.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -321,13 +325,10 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // 
             // urunoptionsGroup
             // 
+            this.urunoptionsGroup.Controls.Add(this.panel3);
+            this.urunoptionsGroup.Controls.Add(this.panel2);
             this.urunoptionsGroup.Controls.Add(this.shotx2CheckBox);
             this.urunoptionsGroup.Controls.Add(this.shot1xCheckBox);
-            this.urunoptionsGroup.Controls.Add(this.bardakBoyutTallRadioButton);
-            this.urunoptionsGroup.Controls.Add(this.bardakBoyutGrandeRadioButton);
-            this.urunoptionsGroup.Controls.Add(this.bardakBoyutVentiRadioButton);
-            this.urunoptionsGroup.Controls.Add(this.soyasutRadioButton);
-            this.urunoptionsGroup.Controls.Add(this.yagsizsutRadioButton);
             this.urunoptionsGroup.Controls.Add(this.label7);
             this.urunoptionsGroup.Controls.Add(this.label6);
             this.urunoptionsGroup.Controls.Add(this.label5);
@@ -341,7 +342,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // shotx2CheckBox
             // 
             this.shotx2CheckBox.AutoSize = true;
-            this.shotx2CheckBox.Location = new System.Drawing.Point(208, 24);
+            this.shotx2CheckBox.Location = new System.Drawing.Point(208, 9);
             this.shotx2CheckBox.Name = "shotx2CheckBox";
             this.shotx2CheckBox.Size = new System.Drawing.Size(37, 17);
             this.shotx2CheckBox.TabIndex = 11;
@@ -352,7 +353,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // shot1xCheckBox
             // 
             this.shot1xCheckBox.AutoSize = true;
-            this.shot1xCheckBox.Location = new System.Drawing.Point(126, 23);
+            this.shot1xCheckBox.Location = new System.Drawing.Point(126, 9);
             this.shot1xCheckBox.Name = "shot1xCheckBox";
             this.shot1xCheckBox.Size = new System.Drawing.Size(37, 17);
             this.shot1xCheckBox.TabIndex = 10;
@@ -363,7 +364,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // bardakBoyutTallRadioButton
             // 
             this.bardakBoyutTallRadioButton.AutoSize = true;
-            this.bardakBoyutTallRadioButton.Location = new System.Drawing.Point(291, 69);
+            this.bardakBoyutTallRadioButton.Location = new System.Drawing.Point(132, 6);
             this.bardakBoyutTallRadioButton.Name = "bardakBoyutTallRadioButton";
             this.bardakBoyutTallRadioButton.Size = new System.Drawing.Size(42, 17);
             this.bardakBoyutTallRadioButton.TabIndex = 9;
@@ -375,7 +376,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // bardakBoyutGrandeRadioButton
             // 
             this.bardakBoyutGrandeRadioButton.AutoSize = true;
-            this.bardakBoyutGrandeRadioButton.Location = new System.Drawing.Point(208, 69);
+            this.bardakBoyutGrandeRadioButton.Location = new System.Drawing.Point(67, 6);
             this.bardakBoyutGrandeRadioButton.Name = "bardakBoyutGrandeRadioButton";
             this.bardakBoyutGrandeRadioButton.Size = new System.Drawing.Size(60, 17);
             this.bardakBoyutGrandeRadioButton.TabIndex = 8;
@@ -387,7 +388,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // bardakBoyutVentiRadioButton
             // 
             this.bardakBoyutVentiRadioButton.AutoSize = true;
-            this.bardakBoyutVentiRadioButton.Location = new System.Drawing.Point(126, 69);
+            this.bardakBoyutVentiRadioButton.Location = new System.Drawing.Point(3, 6);
             this.bardakBoyutVentiRadioButton.Name = "bardakBoyutVentiRadioButton";
             this.bardakBoyutVentiRadioButton.Size = new System.Drawing.Size(49, 17);
             this.bardakBoyutVentiRadioButton.TabIndex = 7;
@@ -399,7 +400,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // soyasutRadioButton
             // 
             this.soyasutRadioButton.AutoSize = true;
-            this.soyasutRadioButton.Location = new System.Drawing.Point(185, 43);
+            this.soyasutRadioButton.Location = new System.Drawing.Point(67, 3);
             this.soyasutRadioButton.Name = "soyasutRadioButton";
             this.soyasutRadioButton.Size = new System.Drawing.Size(49, 17);
             this.soyasutRadioButton.TabIndex = 6;
@@ -411,7 +412,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // yagsizsutRadioButton
             // 
             this.yagsizsutRadioButton.AutoSize = true;
-            this.yagsizsutRadioButton.Location = new System.Drawing.Point(126, 43);
+            this.yagsizsutRadioButton.Location = new System.Drawing.Point(3, 3);
             this.yagsizsutRadioButton.Name = "yagsizsutRadioButton";
             this.yagsizsutRadioButton.Size = new System.Drawing.Size(56, 17);
             this.yagsizsutRadioButton.TabIndex = 5;
@@ -485,6 +486,25 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.totalSipLabel.TabIndex = 5;
             this.totalSipLabel.Text = "Toplam Sipariş Tutarı : _____ TL";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.soyasutRadioButton);
+            this.panel2.Controls.Add(this.yagsizsutRadioButton);
+            this.panel2.Location = new System.Drawing.Point(124, 35);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(194, 30);
+            this.panel2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.bardakBoyutVentiRadioButton);
+            this.panel3.Controls.Add(this.bardakBoyutGrandeRadioButton);
+            this.panel3.Controls.Add(this.bardakBoyutTallRadioButton);
+            this.panel3.Location = new System.Drawing.Point(124, 65);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(203, 29);
+            this.panel3.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -515,6 +535,10 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.urunoptionsGroup.ResumeLayout(false);
             this.urunoptionsGroup.PerformLayout();
             this.siparislerGroup.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -561,6 +585,8 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         private System.Windows.Forms.Label totalSipLabel;
         private System.Windows.Forms.CheckBox shotx2CheckBox;
         private System.Windows.Forms.CheckBox shot1xCheckBox;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

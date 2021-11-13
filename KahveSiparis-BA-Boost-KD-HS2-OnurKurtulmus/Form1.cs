@@ -40,13 +40,14 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         public string musteriAdres = "";
         public static KeyValuePair<string,double> shotMultiplier1x = new KeyValuePair<string, double> ("Shot x1", 0.75 );
         public static KeyValuePair<string, double> shotMultiplier2x = new KeyValuePair<string, double>("Shot x2", 1.5);
+        public static KeyValuePair<string, double> shotMultiplier0x = new KeyValuePair<string, double>("", 0);
         public static KeyValuePair<string, double> yagsizSut = new KeyValuePair<string, double>("Yağsız", 0.5);
         public static KeyValuePair<string, double> soyaSut = new KeyValuePair<string, double>("Soya", 0.5);
         public static KeyValuePair<string, double> icecekBoyutTall = new KeyValuePair<string, double>("Tall", 1);
         public static KeyValuePair<string, double> icecekBoyutGrande = new KeyValuePair<string, double>("Grande", 1.25);
         public static KeyValuePair<string, double> icecekBoyutVenti = new KeyValuePair<string, double>("Venti", 1.75);
         public static double sogukIcecekFiyat = 5.5;
-
+        
         KeyValuePair<string, double> selectedShot = new KeyValuePair<string, double>("", 0);
         KeyValuePair<string, double> selectedIcecekBoyut;
         KeyValuePair<string, double> selectedSut = new KeyValuePair<string, double>("Normal Süt", 0);
@@ -133,6 +134,9 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             kahveAdet.Value = 0;
             sicakAdet.Value = 0;
             sogukAdet.Value = 0;
+            shot1xCheckBox.Checked = false;
+            shotx2CheckBox.Checked = false;
+
         }
 
         class SiparisItem
@@ -210,6 +214,8 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             
             shotx2CheckBox.Checked = false;
             selectedShot = shotSelector("1x");
+            if (!shot1xCheckBox.Checked) shotSelector("0x");
+
             
         }
 
@@ -218,12 +224,14 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         {
             shot1xCheckBox.Checked = false;
             selectedShot = shotSelector("2x");
+            if (!shot2xCheckBox.Checked) shotSelector("0x");
         }
         KeyValuePair<string, double> shotSelector(string selectedShot)
         {
             KeyValuePair<string, double> multiplier = new KeyValuePair<string, double>();
             if (selectedShot == "1x") { multiplier = shotMultiplier1x; }
             if (selectedShot == "2x") { multiplier = shotMultiplier2x; }
+            if (selectedShot == "0x") { multiplier = shotMultiplier0x; }
             return multiplier;
         }
 
@@ -263,8 +271,9 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
 
         private void siparisVerBtn_Click(object sender, EventArgs e)
         {
-            string message = $"Toplam {icecekAdet} Adet siparişini bulunmaktadır \n {tumtoplam} - TL Tutarındadır";
-
+            string message = $"Toplam {icecekAdet} Adet siparişiniz bulunmaktadır \n {tumtoplam} - TL Tutarındadır";
+            MessageBox.Show(message);
+            clearer();
         }
     }
 
