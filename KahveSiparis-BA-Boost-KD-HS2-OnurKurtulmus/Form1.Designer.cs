@@ -516,7 +516,9 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.Controls.Add(this.urunlerGroup);
             this.Controls.Add(this.musteriBilgileriGroup);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Bilge Kahve Evi Sipariş Ekranı";
             this.panel1.ResumeLayout(false);

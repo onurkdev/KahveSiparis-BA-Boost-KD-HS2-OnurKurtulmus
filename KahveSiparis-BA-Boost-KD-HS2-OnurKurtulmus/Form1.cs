@@ -49,7 +49,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         public static double sogukIcecekFiyat = 5.5;
         
         KeyValuePair<string, double> selectedShot = new KeyValuePair<string, double>("", 0);
-        KeyValuePair<string, double> selectedIcecekBoyut;
+        KeyValuePair<string, double> selectedIcecekBoyut = icecekBoyutTall; //boy default değer Tall olarak ayarlandı
         KeyValuePair<string, double> selectedSut = new KeyValuePair<string, double>("Normal Süt", 0);
         double icecekAdet = 0;
         double tumtoplam = 0;
@@ -75,6 +75,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                 string item = sogukicecek.Key;
                 sogukComboBox.Items.Add(item);
             }
+            bardakBoyutTallRadioButton.Checked = true;
         
         }
         private void hesaplaBtn_Click(object sender, EventArgs e)
@@ -129,7 +130,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                         double adet = Convert.ToDouble(sogukAdet.Value);
                         string selectedsoguk = sogukComboBox.SelectedItem.ToString();
                         double siparisfiyat = sogukIcecekFiyat;
-                        SiparisItem newsiparis = new SiparisItem("Soğuk", selectedsoguk, siparisfiyat);
+                        SiparisItem newsiparis = new SiparisItem("Soğuk", selectedsoguk, siparisfiyat,adet);
                         siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
                         tumtoplam += newsiparis.IcecekFiyat;
                         icecekAdet += adet;
@@ -174,13 +175,31 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             soyasutRadioButton.Checked = false;
             bardakBoyutGrandeRadioButton.Checked=false;
             bardakBoyutVentiRadioButton.Checked = false;
-            bardakBoyutTallRadioButton.Checked = false;
+            bardakBoyutTallRadioButton.Checked = true;
             kahveAdet.Value = 0;
             sicakAdet.Value = 0;
             sogukAdet.Value = 0;
             shot1xCheckBox.Checked = false;
             shotx2CheckBox.Checked = false;
+            selectedIcecekBoyut = icecekBoyutTall;
+            selectedShot = shotMultiplier0x;
+            selectedSut = new KeyValuePair<string, double>("Normal Süt", 0);
 
+        }
+        class MusteriDetay
+        {
+            public string MusteriAdi;
+            public string MusteriAdres;
+            public string MusteriTelefon;
+            public List<SiparisItem> SiparisList;
+            public MusteriDetay (string musteriadi,string musteriadres, string musteritelefon, List<SiparisItem> siparisListesi )
+            {
+                MusteriAdi = musteriadi;
+                MusteriAdres = musteriadres;
+                MusteriTelefon = musteritelefon;
+                SiparisList = siparisListesi;
+
+            }
         }
 
         class SiparisItem
@@ -204,18 +223,19 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                 IcecekBaseFiyat = icecekbasefiyat;
                 IcecekSut = iceceksut;
                 IcecekAdet = icecekadet;
-                IcecekFiyat = (icecekbasefiyat + icecekshot.Value + iceceksut.Value + icecekboyut.Value)*icecekadet;
-                IcecekListItemString = icecekboyut.Key + " " + icecekadi + " " + iceceksut.Key + " " + icecekshot.Key + " : " + IcecekFiyat.ToString() +" - TL";
+                IcecekFiyat = (icecekbasefiyat + icecekshot.Value + iceceksut.Value)*icecekadet*icecekboyut.Value;
+                IcecekListItemString = icecekadet + " adet " +icecekboyut.Key + " " + icecekadi + " " + iceceksut.Key + " " + icecekshot.Key + " : " + IcecekFiyat.ToString() +" - TL";
 
 
             }
-            public SiparisItem(string icecektipi, string icecekadi, double icecekbasefiyat)
+            public SiparisItem(string icecektipi, string icecekadi, double icecekbasefiyat, double icecekadet)
             {
                 IcecekTipi = icecektipi;
                 IcecekAdi = icecekadi;
                 IcecekBaseFiyat = icecekbasefiyat;
-                IcecekFiyat = icecekbasefiyat;
-                IcecekListItemString = icecekadi + " : " + icecekbasefiyat + " - TL";
+                IcecekAdet = icecekadet;
+                IcecekFiyat = icecekbasefiyat*icecekadet;
+                IcecekListItemString = icecekadet + " adet " + icecekadi + " : " + icecekbasefiyat + " - TL";
 
             }
             public SiparisItem (string icecektipi, string icecekadi, double icecekbasefiyat , KeyValuePair<string, double> icecekboyut, double icecekadet)
@@ -227,7 +247,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                 IcecekBaseFiyat = icecekbasefiyat;
                 
                 IcecekAdet = icecekadet;
-                IcecekFiyat = (icecekbasefiyat  + icecekboyut.Value) * icecekadet;
+                IcecekFiyat = icecekbasefiyat* icecekadet* icecekboyut.Value;
                 IcecekListItemString = icecekboyut.Key + " " + icecekadi  +  " : " + IcecekFiyat.ToString() + " - TL";
 
             }
@@ -264,7 +284,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             
             shotx2CheckBox.Checked = false;
             selectedShot = shotSelector("1x");
-            if (!shot1xCheckBox.Checked) shotSelector("0x");
+            if (!shot1xCheckBox.Checked) selectedShot = shotSelector("0x");
 
             
         }
@@ -274,7 +294,10 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         {
             shot1xCheckBox.Checked = false;
             selectedShot = shotSelector("2x");
-            if (!shotx2CheckBox.Checked) shotSelector("0x");
+            if (!shotx2CheckBox.Checked) {
+                selectedShot=shotSelector("0x");
+                
+            };
         }
         KeyValuePair<string, double> shotSelector(string selectedShot)
         {
@@ -321,9 +344,26 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
 
         private void siparisVerBtn_Click(object sender, EventArgs e)
         {
-            string message = $"Toplam {icecekAdet} Adet siparişiniz bulunmaktadır \n {tumtoplam} - TL Tutarındadır";
-            MessageBox.Show(message);
-            clearer();
+            if (adsoyadTextbox.Text == "" || telefonTextbox.Text == "" || adresTextbox.Text== "")
+            {
+                MessageBox.Show("Lütfen Müşteri Bilgilerini tam giriniz!");
+            }
+            else
+            {
+                MusteriDetay newmusteri = new MusteriDetay(
+                    musteriadi: adsoyadTextbox.Text, 
+                    musteritelefon: telefonTextbox.Text,
+                    musteriadres: adresTextbox.Text, 
+                    siparisListesi: siparisler
+                    );
+                
+                string message = $"Toplam {icecekAdet} Adet siparişiniz bulunmaktadır \n {tumtoplam} - TL Tutarındadır";
+                MessageBox.Show($"{message} \nMüşteri Adı:{newmusteri.MusteriAdi} \nTeslimat Adresi:{newmusteri.MusteriAdres}\nTelefon:{newmusteri.MusteriTelefon} ");
+                clearer();
+
+            }
+
+
         }
     }
 
