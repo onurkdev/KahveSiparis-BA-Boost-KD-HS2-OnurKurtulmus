@@ -79,44 +79,88 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         }
         private void hesaplaBtn_Click(object sender, EventArgs e)
         {
-
-            if (kahvelerComboBox.SelectedIndex != -1) {
-                double adet = Convert.ToDouble(kahveAdet.Value);
-                string selectedkahve = kahvelerComboBox.SelectedItem.ToString();
-                double siparisfiyat= (double)kahvelerList[selectedkahve];
-                SiparisItem newsiparis = new SiparisItem(icecektipi: "Kahve", icecekadi:selectedkahve,icecekboyut:selectedIcecekBoyut,icecekshot:selectedShot,iceceksut:selectedSut,icecekadet:adet,icecekbasefiyat:siparisfiyat);
-                siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
-                tumtoplam += newsiparis.IcecekFiyat;
-                icecekAdet += adet;
-                totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
-                clearer();
-            }
-
-            if (sogukComboBox.SelectedIndex != -1)
+            if (kahvelerComboBox.SelectedIndex == -1 && sicakComboBox.SelectedIndex == -1 && sogukComboBox.SelectedIndex == -1)
             {
-                double adet = Convert.ToDouble(sogukAdet.Value);
-                string selectedsoguk = sogukComboBox.SelectedItem.ToString();
-                double siparisfiyat = sogukIcecekFiyat;
-                SiparisItem newsiparis = new SiparisItem("Soğuk", selectedsoguk, siparisfiyat);
-                siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
-                tumtoplam += newsiparis.IcecekFiyat;
-                icecekAdet += adet;
-                totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
-                clearer();
-
+                MessageBox.Show("Lütfen bir ürün seçiniz!");
+                return;
             }
-            if (sicakComboBox.SelectedIndex != -1)
+            
             {
-                double adet = Convert.ToDouble(sicakAdet.Value);
-                string selectedsicak = sicakComboBox.SelectedItem.ToString();
-                double siparisfiyat = (double)sicakIceceklerList[selectedsicak];
-                SiparisItem newsiparis = new SiparisItem(icecektipi: "Kahve", icecekadi: selectedsicak,siparisfiyat,selectedIcecekBoyut,adet);
-                siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
-                tumtoplam += newsiparis.IcecekFiyat;
-                icecekAdet += adet;
-                totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
-                clearer();
+                if (kahvelerComboBox.SelectedIndex != -1)
+                {
+                    if(kahveAdet.Value==0)
+                    {
+                        MessageBox.Show("Lütfen adet giriniz!");
+                        return;
+
+                    }
+                    else
+                    {
+                        double adet = Convert.ToDouble(kahveAdet.Value);
+                        string selectedkahve = kahvelerComboBox.SelectedItem.ToString();
+                        double siparisfiyat = (double)kahvelerList[selectedkahve];
+                        SiparisItem newsiparis = new SiparisItem(
+                            icecektipi: "Kahve",
+                            icecekadi: selectedkahve,
+                            icecekboyut: selectedIcecekBoyut,
+                            icecekshot: selectedShot,
+                            iceceksut: selectedSut,
+                            icecekadet: adet,
+                            icecekbasefiyat: siparisfiyat);
+                        siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
+                        tumtoplam += newsiparis.IcecekFiyat;
+                        icecekAdet += adet;
+                        totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
+                        clearer();
+                    }
+                    
+                }
+
+                if (sogukComboBox.SelectedIndex != -1)
+                {
+                    if (sogukAdet.Value == 0)
+                    {
+                        MessageBox.Show("Lütfen adet giriniz!");
+                        return;
+
+                    }
+                    else
+                    {
+                        double adet = Convert.ToDouble(sogukAdet.Value);
+                        string selectedsoguk = sogukComboBox.SelectedItem.ToString();
+                        double siparisfiyat = sogukIcecekFiyat;
+                        SiparisItem newsiparis = new SiparisItem("Soğuk", selectedsoguk, siparisfiyat);
+                        siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
+                        tumtoplam += newsiparis.IcecekFiyat;
+                        icecekAdet += adet;
+                        totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
+                        clearer();
+                    }
+
+                }
+                if (sicakComboBox.SelectedIndex != -1)
+                {
+                    if (sogukAdet.Value == 0)
+                    {
+                        MessageBox.Show("Lütfen adet giriniz!");
+                        return;
+
+                    }
+                    else
+                    {
+                        double adet = Convert.ToDouble(sicakAdet.Value);
+                        string selectedsicak = sicakComboBox.SelectedItem.ToString();
+                        double siparisfiyat = (double)sicakIceceklerList[selectedsicak];
+                        SiparisItem newsiparis = new SiparisItem(icecektipi: "Kahve", icecekadi: selectedsicak, siparisfiyat, selectedIcecekBoyut, adet);
+                        siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
+                        tumtoplam += newsiparis.IcecekFiyat;
+                        icecekAdet += adet;
+                        totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
+                        clearer();
+                    }
+                }
             }
+            
             
 
         }
@@ -194,18 +238,24 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         {
             sogukComboBox.SelectedIndex = -1;
             kahvelerComboBox.SelectedIndex = -1;
+            sogukAdet.Value = 0;
+            kahveAdet.Value = 0;
         }
 
         private void sogukComboBox_Enter(object sender, EventArgs e)
         {
             kahvelerComboBox.SelectedIndex = -1;
             sicakComboBox.SelectedIndex = -1;
+            sicakAdet.Value = 0;
+            kahveAdet.Value = 0;
         }
 
         private void kahvelerComboBox_Enter(object sender, EventArgs e)
         {
             sogukComboBox.SelectedIndex = -1;
             sicakComboBox.SelectedIndex = -1;
+            sogukAdet.Value = 0;
+            sicakAdet.Value = 0;
 
         }
 
@@ -224,7 +274,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         {
             shot1xCheckBox.Checked = false;
             selectedShot = shotSelector("2x");
-            if (!shot2xCheckBox.Checked) shotSelector("0x");
+            if (!shotx2CheckBox.Checked) shotSelector("0x");
         }
         KeyValuePair<string, double> shotSelector(string selectedShot)
         {
