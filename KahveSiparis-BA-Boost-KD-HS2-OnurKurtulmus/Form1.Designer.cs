@@ -41,9 +41,9 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.adresTextbox = new System.Windows.Forms.TextBox();
             this.adsoyadTextbox = new System.Windows.Forms.TextBox();
             this.urunlerGroup = new System.Windows.Forms.GroupBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.sicakAdet = new System.Windows.Forms.NumericUpDown();
+            this.sogukAdet = new System.Windows.Forms.NumericUpDown();
+            this.kahveAdet = new System.Windows.Forms.NumericUpDown();
             this.sicakComboBox = new System.Windows.Forms.ComboBox();
             this.sogukComboBox = new System.Windows.Forms.ComboBox();
             this.kahvelerComboBox = new System.Windows.Forms.ComboBox();
@@ -68,14 +68,14 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.siparislerGroup = new System.Windows.Forms.GroupBox();
             this.siparislerListBox = new System.Windows.Forms.ListBox();
             this.siparisVerBtn = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
+            this.totalSipLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.musteriBilgileriGroup.SuspendLayout();
             this.urunlerGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sicakAdet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sogukAdet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kahveAdet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -183,9 +183,9 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             // 
             // urunlerGroup
             // 
-            this.urunlerGroup.Controls.Add(this.numericUpDown3);
-            this.urunlerGroup.Controls.Add(this.numericUpDown2);
-            this.urunlerGroup.Controls.Add(this.numericUpDown1);
+            this.urunlerGroup.Controls.Add(this.sicakAdet);
+            this.urunlerGroup.Controls.Add(this.sogukAdet);
+            this.urunlerGroup.Controls.Add(this.kahveAdet);
             this.urunlerGroup.Controls.Add(this.sicakComboBox);
             this.urunlerGroup.Controls.Add(this.sogukComboBox);
             this.urunlerGroup.Controls.Add(this.kahvelerComboBox);
@@ -204,26 +204,26 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.urunlerGroup.TabStop = false;
             this.urunlerGroup.Text = "Ürünler";
             // 
-            // numericUpDown3
+            // sicakAdet
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(340, 129);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(55, 20);
-            this.numericUpDown3.TabIndex = 13;
+            this.sicakAdet.Location = new System.Drawing.Point(340, 129);
+            this.sicakAdet.Name = "sicakAdet";
+            this.sicakAdet.Size = new System.Drawing.Size(55, 20);
+            this.sicakAdet.TabIndex = 13;
             // 
-            // numericUpDown2
+            // sogukAdet
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(339, 77);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(55, 20);
-            this.numericUpDown2.TabIndex = 12;
+            this.sogukAdet.Location = new System.Drawing.Point(339, 77);
+            this.sogukAdet.Name = "sogukAdet";
+            this.sogukAdet.Size = new System.Drawing.Size(55, 20);
+            this.sogukAdet.TabIndex = 12;
             // 
-            // numericUpDown1
+            // kahveAdet
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(339, 30);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(55, 20);
-            this.numericUpDown1.TabIndex = 11;
+            this.kahveAdet.Location = new System.Drawing.Point(339, 30);
+            this.kahveAdet.Name = "kahveAdet";
+            this.kahveAdet.Size = new System.Drawing.Size(55, 20);
+            this.kahveAdet.TabIndex = 11;
             // 
             // sicakComboBox
             // 
@@ -473,23 +473,24 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.siparisVerBtn.TabIndex = 4;
             this.siparisVerBtn.Text = "Sipariş Ver";
             this.siparisVerBtn.UseVisualStyleBackColor = true;
+            this.siparisVerBtn.Click += new System.EventHandler(this.siparisVerBtn_Click);
             // 
-            // label8
+            // totalSipLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(448, 582);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(268, 20);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Toplam Sipariş Tutarı : _____ TL";
+            this.totalSipLabel.AutoSize = true;
+            this.totalSipLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalSipLabel.Location = new System.Drawing.Point(448, 582);
+            this.totalSipLabel.Name = "totalSipLabel";
+            this.totalSipLabel.Size = new System.Drawing.Size(268, 20);
+            this.totalSipLabel.TabIndex = 5;
+            this.totalSipLabel.Text = "Toplam Sipariş Tutarı : _____ TL";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 665);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.totalSipLabel);
             this.Controls.Add(this.siparisVerBtn);
             this.Controls.Add(this.siparislerGroup);
             this.Controls.Add(this.urunlerGroup);
@@ -505,9 +506,9 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             this.musteriBilgileriGroup.PerformLayout();
             this.urunlerGroup.ResumeLayout(false);
             this.urunlerGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sicakAdet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sogukAdet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kahveAdet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -537,9 +538,9 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         private System.Windows.Forms.Button siparisVerBtn;
         private System.Windows.Forms.Label adreslbl;
         private System.Windows.Forms.MaskedTextBox telefonTextbox;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown sicakAdet;
+        private System.Windows.Forms.NumericUpDown sogukAdet;
+        private System.Windows.Forms.NumericUpDown kahveAdet;
         private System.Windows.Forms.ComboBox sicakComboBox;
         private System.Windows.Forms.ComboBox sogukComboBox;
         private System.Windows.Forms.ComboBox kahvelerComboBox;
@@ -557,7 +558,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label totalSipLabel;
         private System.Windows.Forms.CheckBox shotx2CheckBox;
         private System.Windows.Forms.CheckBox shot1xCheckBox;
     }

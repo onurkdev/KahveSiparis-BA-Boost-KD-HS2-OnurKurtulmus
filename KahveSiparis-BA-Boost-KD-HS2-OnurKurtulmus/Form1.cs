@@ -51,6 +51,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         KeyValuePair<string, double> selectedIcecekBoyut;
         KeyValuePair<string, double> selectedSut = new KeyValuePair<string, double>("Normal Süt", 0);
         double icecekAdet = 0;
+        double tumtoplam = 0;
         public Form1()
         {
             InitializeComponent();
@@ -61,39 +62,78 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
         void listsInitilazer() { 
             foreach (KeyValuePair<string, double> kahve in kahvelerList)
             {
-                string item = kahve.Key + " - "+kahve.Value+" - TL";
+                string item = kahve.Key;
                 kahvelerComboBox.Items.Add(item);
             }
             foreach (KeyValuePair<string, double> sicakicecek in sicakIceceklerList)
             {
-                string item = sicakicecek.Key + " - " + sicakicecek.Value + " - TL";
+                string item = sicakicecek.Key;
                 sicakComboBox.Items.Add(item);
             }
             foreach (KeyValuePair<string, double> sogukicecek in sogukIceceklerList) {
-                string item = sogukicecek.Key + " - " + sogukicecek.Value + " - TL";
+                string item = sogukicecek.Key;
                 sogukComboBox.Items.Add(item);
             }
         
         }
         private void hesaplaBtn_Click(object sender, EventArgs e)
         {
+
             if (kahvelerComboBox.SelectedIndex != -1) {
-                SiparisItem newsiparis = new SiparisItem(kahvelerComboBox.SelectedItem.)
+                double adet = Convert.ToDouble(kahveAdet.Value);
+                string selectedkahve = kahvelerComboBox.SelectedItem.ToString();
+                double siparisfiyat= (double)kahvelerList[selectedkahve];
+                SiparisItem newsiparis = new SiparisItem(icecektipi: "Kahve", icecekadi:selectedkahve,icecekboyut:selectedIcecekBoyut,icecekshot:selectedShot,iceceksut:selectedSut,icecekadet:adet,icecekbasefiyat:siparisfiyat);
+                siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
+                tumtoplam += newsiparis.IcecekFiyat;
+                icecekAdet += adet;
+                totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
+                clearer();
             }
 
             if (sogukComboBox.SelectedIndex != -1)
             {
+                double adet = Convert.ToDouble(sogukAdet.Value);
+                string selectedsoguk = sogukComboBox.SelectedItem.ToString();
+                double siparisfiyat = sogukIcecekFiyat;
+                SiparisItem newsiparis = new SiparisItem("Soğuk", selectedsoguk, siparisfiyat);
+                siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
+                tumtoplam += newsiparis.IcecekFiyat;
+                icecekAdet += adet;
+                totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
+                clearer();
 
             }
             if (sicakComboBox.SelectedIndex != -1)
             {
-
+                double adet = Convert.ToDouble(sicakAdet.Value);
+                string selectedsicak = sicakComboBox.SelectedItem.ToString();
+                double siparisfiyat = (double)sicakIceceklerList[selectedsicak];
+                SiparisItem newsiparis = new SiparisItem(icecektipi: "Kahve", icecekadi: selectedsicak,siparisfiyat,selectedIcecekBoyut,adet);
+                siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
+                tumtoplam += newsiparis.IcecekFiyat;
+                icecekAdet += adet;
+                totalSipLabel.Text = $"Toplam Sipariş Tutarı : {tumtoplam} TL";
+                clearer();
             }
             
 
         }
 
-
+        void clearer ()
+        {
+            kahvelerComboBox.SelectedIndex = -1;
+            sogukComboBox.SelectedIndex = -1;
+            sicakComboBox.SelectedIndex = -1;
+            yagsizsutRadioButton.Checked = false;
+            soyasutRadioButton.Checked = false;
+            bardakBoyutGrandeRadioButton.Checked=false;
+            bardakBoyutVentiRadioButton.Checked = false;
+            bardakBoyutTallRadioButton.Checked = false;
+            kahveAdet.Value = 0;
+            sicakAdet.Value = 0;
+            sogukAdet.Value = 0;
+        }
 
         class SiparisItem
         {
@@ -219,6 +259,12 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             bardakBoyutGrandeRadioButton.Checked = false;
             bardakBoyutVentiRadioButton.Checked = false;
             selectedIcecekBoyut = icecekBoyutTall;
+        }
+
+        private void siparisVerBtn_Click(object sender, EventArgs e)
+        {
+            string message = $"Toplam {icecekAdet} Adet siparişini bulunmaktadır \n {tumtoplam} - TL Tutarındadır";
+
         }
     }
 
