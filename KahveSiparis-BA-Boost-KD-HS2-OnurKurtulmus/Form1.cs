@@ -141,7 +141,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                 }
                 if (sicakComboBox.SelectedIndex != -1)
                 {
-                    if (sogukAdet.Value == 0)
+                    if (sicakAdet.Value == 0)
                     {
                         MessageBox.Show("Lütfen adet giriniz!");
                         return;
@@ -248,7 +248,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                 
                 IcecekAdet = icecekadet;
                 IcecekFiyat = icecekbasefiyat* icecekadet* icecekboyut.Value;
-                IcecekListItemString = icecekboyut.Key + " " + icecekadi  +  " : " + IcecekFiyat.ToString() + " - TL";
+                IcecekListItemString = icecekadet + " adet "+ icecekboyut.Key + " " + icecekadi  +  " : " + IcecekFiyat.ToString() + " - TL";
 
             }
                 
