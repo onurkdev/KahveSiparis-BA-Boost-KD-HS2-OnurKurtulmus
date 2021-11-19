@@ -12,6 +12,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
 {
     public partial class Form1 : Form
     {
+        
         List<SiparisItem> siparisler = new List<SiparisItem>();
 
         Dictionary<string, double> kahvelerList = new Dictionary<string, double> {
@@ -152,7 +153,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                         double adet = Convert.ToDouble(sicakAdet.Value);
                         string selectedsicak = sicakComboBox.SelectedItem.ToString();
                         double siparisfiyat = (double)sicakIceceklerList[selectedsicak];
-                        SiparisItem newsiparis = new SiparisItem(icecektipi: "Kahve", icecekadi: selectedsicak, siparisfiyat, selectedIcecekBoyut, adet);
+                        SiparisItem newsiparis = new SiparisItem(icecektipi: "Sıcak İçecek", icecekadi: selectedsicak, siparisfiyat, selectedIcecekBoyut, adet);
                         siparislerListBox.Items.Add(newsiparis.IcecekListItemString);
                         tumtoplam += newsiparis.IcecekFiyat;
                         icecekAdet += adet;
@@ -185,9 +186,11 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
             selectedShot = shotMultiplier0x;
             selectedSut = new KeyValuePair<string, double>("Normal Süt", 0);
 
+
         }
         class MusteriDetay
         {
+            public int MyProperty { get; set; }
             public string MusteriAdi;
             public string MusteriAdres;
             public string MusteriTelefon;
@@ -200,7 +203,13 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                 SiparisList = siparisListesi;
 
             }
+            public void serverload() { }
         }
+        
+       
+
+
+
 
         class SiparisItem
         {
@@ -235,7 +244,7 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
                 IcecekBaseFiyat = icecekbasefiyat;
                 IcecekAdet = icecekadet;
                 IcecekFiyat = icecekbasefiyat*icecekadet;
-                IcecekListItemString = icecekadet + " adet " + icecekadi + " : " + icecekbasefiyat + " - TL";
+                IcecekListItemString = icecekadet + " adet " + icecekadi + " : " + IcecekFiyat + " - TL";
 
             }
             public SiparisItem (string icecektipi, string icecekadi, double icecekbasefiyat , KeyValuePair<string, double> icecekboyut, double icecekadet)
@@ -365,6 +374,8 @@ namespace KahveSiparis_BA_Boost_KD_HS2_OnurKurtulmus
 
 
         }
+
     }
+    
 
 }
